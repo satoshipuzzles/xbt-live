@@ -2,11 +2,12 @@
 // repo's ui/ (Corny Chat's fork of Jam), so the audio protocol always matches
 // what cornychat.com runs.
 import * as esbuild from 'esbuild';
-import {cpSync, mkdirSync, rmSync} from 'node:fs';
+import {cpSync, mkdirSync, readdirSync, rmSync} from 'node:fs';
 
 const serve = process.argv.includes('--serve');
-rmSync('dist', {recursive: true, force: true});
 mkdirSync('dist', {recursive: true});
+// keep dist/.vercel, the Vercel project link, across builds
+for (const f of readdirSync('dist')) if (f !== '.vercel') rmSync(`dist/${f}`, {recursive: true, force: true});
 cpSync('public', 'dist', {recursive: true});
 
 const options = {
