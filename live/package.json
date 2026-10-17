@@ -1,0 +1,24 @@
+{
+  "name": "xbt-live",
+  "version": "0.1.0",
+  "private": true,
+  "description": "XBT-first audio room client for Corny Chat rooms",
+  "license": "AGPL-3.0",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "dev": "node build.mjs --serve"
+  },
+  "dependencies": {
+    "@noble/curves": "1.8.1",
+    "@noble/hashes": "1.7.1",
+    "@scure/base": "1.2.4",
+    "htm": "3.1.1",
+    "nostr-tools": "2.10.4",
+    "preact": "10.25.4",
+    "qr-creator": "1.0.0"
+  },
+  "devDependencies": {
+    "esbuild": "0.19.12"
+  }
+}

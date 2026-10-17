@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>XBT Live</title>
+<meta name="description" content="Live audio room for Bitcoin (XBT). Listen, talk, and tip speakers on XBT or BTC, over Lightning or on-chain.">
+<meta name="theme-color" content="#0b0a08">
+<meta property="og:title" content="XBT Live">
+<meta property="og:description" content="Live audio room for Bitcoin (XBT). Tip speakers on XBT or BTC.">
+<meta property="og:image" content="https://live.nostronchain.com/og.png">
+<link rel="icon" href="/icon.png">
+<link rel="stylesheet" href="/css/app.css">
+<script>
+  // Audio, signaling and relays are Corny Chat's (cornychat.com). Same values
+  // its own pages use, so rooms behave identically here and there.
+  window.jamConfig = {
+    urls: {
+      jam: 'https://cornychat.com',
+      pantry: 'https://cornychat.com/_/pantry',
+      stun: 'stun:stun.cornychat.com:3478',
+      turn: 'turn:turn.cornychat.com:3478',
+      turnCredentials: {username: 'test', credential: 'yieChoi0PeoKo8ni'},
+    },
+    development: false,
+    sfu: true,
+    broadcast: false,
+    relaysGeneral: ['wss://nos.lol', 'wss://thebarn.nostr1.com'],
+    relaysZapGoals: ['wss://nos.lol', 'wss://thebarn.nostr1.com'],
+  };
+</script>
+</head>
+<body>
+<div id="app"></div>
+<noscript>XBT Live needs JavaScript for audio.</noscript>
+<script type="module" src="/js/app.js"></script>
+</body>
+</html>

@@ -22,14 +22,14 @@ export default async function signalws({
   if (!url.endsWith('/')) url += '/';
   let token = encode(new TextEncoder().encode(JSON.stringify(await sign({}))));
   let subs = subscriptions.join(',');
-  url += `${roomId}?id=${myPeerId}.${myConnId}&token=${token}&subs=${subs}&bd=BUILD_DATE`;
+  url += `${roomId}?id=${myPeerId}.${myConnId}&token=${token}&subs=${subs}&bd=${buildDate()}`;
 
   let ws = new WebSocket(url);
 
   ws.addEventListener('open', () => {
     is(hub, 'opened', true);
     hub.interval = setInterval(() => {
-      send(hub, {t: 'ping', b: 'BUILD_DATE'});
+      send(hub, {t: 'ping', b: buildDate()});
     }, PING_INTERVAL);
   });
   ws.addEventListener('message', ({data}) => {
@@ -193,4 +193,11 @@ function requestAccepted(requestId, data) {
   if (request === undefined) return;
   request.accept(data);
   requests.delete(requestId);
+}
+
+// The server only accepts clients built from its own release. Corny Chat's
+// image stamps BUILD_DATE in at build time; a client hosted elsewhere sets
+// window.jamBuildDate from the server's /api/v1/builddate instead.
+function buildDate() {
+  return window.jamBuildDate ?? 'BUILD_DATE';
 }
